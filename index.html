@@ -104,8 +104,6 @@ body{background:var(--dark);color:var(--text);font-family:'Poppins',sans-serif;o
   mix-blend-mode: lighten;
   filter: brightness(1.15) contrast(1.15);
 }
-
-/* ✅ CORRIGIDO: usa -50% para loop perfeito com imagens duplicadas */
 @keyframes marquee{
   0%  {transform:translateX(0);}
   100%{transform:translateX(-50%);}
@@ -194,7 +192,6 @@ body{background:var(--dark);color:var(--text);font-family:'Poppins',sans-serif;o
   object-fit:contain;
 }
 
-/* ✅ CORRIGIDO: era -43px -10 (faltava unidade), agora -43px 0 */
 .section-divider {
   display: block;
   width: 100%;
@@ -234,23 +231,8 @@ img.dep-layer {
 #depParticles { z-index: 1; pointer-events: none; }
 #depText      { z-index: 2; pointer-events: none; }
 #depCards     { z-index: 3; pointer-events: none; }
-.dep-card-zones { z-index: 4; pointer-events: none; }
-.dep-card-zone {
-  position: absolute;
-  pointer-events: all;
-  border-radius: 10px;
-  transition: box-shadow 0.3s ease;
-}
-.dep-card-zone:hover {
-  box-shadow:
-    0 0 0 2px rgba(212,160,23,.6),
-    0 0 28px 6px  rgba(212,160,23,.4),
-    0 0 70px 14px rgba(212,160,23,.15);
-}
-.dep-tl { top:21.4%; left:14.4%; width:34.6%; height:20.7%; }
-.dep-tr { top:21.3%; left:53.3%; width:31.2%; height:20.7%; }
-.dep-bl { top:45.8%; left:14.4%; width:34.6%; height:20.7%; }
-.dep-br { top:45.8%; left:53.3%; width:31.2%; height:20.7%; }
+/* Canvas de cometas — z-index 4, acima dos cards */
+#depComets    { z-index: 4; pointer-events: none; }
 #depAudioZone {
   position: absolute;
   z-index: 5;
@@ -421,32 +403,15 @@ footer{padding:36px 5vw;border-top:1px solid rgba(255,255,255,.05);text-align:ce
 ═══════════════════════════════════ -->
 <section style="margin:0;padding:0;width:100%;display:block;overflow:hidden;background:#0a0a0a;">
   <div class="hero-img-wrap">
-
-    <!-- 🖼️ IMAGEM 1: Fundo principal do hero -->
     <img class="hero-bg-img" src="Herodesktop.png" alt="Mente Inabalável Hero">
-
     <a id="hs1" class="hero-hotspot" href="https://pay.kiwify.com.br/V600BAY" target="_blank" title="Quero Transformar Minha Mente"></a>
     <a id="hs2" class="hero-hotspot" href="#modulos" title="Ver Módulos"></a>
   </div>
 
-  <!-- ═══════════════════════════════════
-           CARROSSEL INFINITO
-  ═══════════════════════════════════ -->
-  <!--
-    ✅ IMPORTANTE: Para o loop ser perfeito, as imagens precisam estar DUPLICADAS
-    dentro do .marquee-track (dois sets iguais). Ex:
-    [img1][img2][img3]  [img1][img2][img3]
-    O CSS já usa translateX(-50%) para funcionar com isso.
-  -->
   <div class="marquee-wrap">
     <div class="marquee-track">
-      <!-- SET 1 -->
-      <!-- 🖼️ IMAGEM 3: Primeira imagem da faixa do carrossel -->
       <img src="Carrossel Vitalício Acesso + Atualizações.png" alt="">
-      <!-- 🖼️ IMAGEM 4: Segunda imagem da faixa do carrossel -->
       <img src="Carrossel Vitalício Acesso + Atualizações.png" alt="">
-
-      <!-- SET 2 (duplicata para loop infinito) -->
       <img src="Carrossel Vitalício Acesso + Atualizações.png" alt="">
       <img src="Carrossel Vitalício Acesso + Atualizações.png" alt="">
     </div>
@@ -458,19 +423,12 @@ footer{padding:36px 5vw;border-top:1px solid rgba(255,255,255,.05);text-align:ce
 ═══════════════════════════════════ -->
 <section class="diag-section" id="diagnostico">
   <div class="diag-canvas">
-    <!-- 🖼️ IMAGEM 5: Fundo base do diagnóstico -->
     <img class="layer layer-base"    src="diagnfundo.png"    alt="">
-    <!-- 🖼️ IMAGEM 6: Camada laranja do diagnóstico -->
     <img class="layer layer-laranja" src="baselaranja.png" alt="" data-lego="bottom">
-    <!-- 🖼️ IMAGEM 7: Camada marrom do diagnóstico -->
     <img class="layer layer-marrom"  src="basemarrom.png"  alt="" data-lego="bottom" data-lego-delay="100">
-    <!-- 🖼️ IMAGEM 8: Borda/moldura do diagnóstico -->
     <img class="layer layer-borda"   src="bordadourada.png"   alt="" data-lego="bottom" data-lego-delay="150">
-    <!-- 🖼️ IMAGEM 9: Logo sobreposto (mix-blend-mode: screen) -->
     <img class="layer layer-logo"    src="logofundo.png"    alt="" data-lego="zoom"   data-lego-delay="200">
-    <!-- 🖼️ IMAGEM 10: Textos do diagnóstico -->
     <img class="layer layer-texto"   src="textobranco.png"   alt="" data-lego="left"   data-lego-delay="250">
-    <!-- 🖼️ IMAGEM 11: Foto/assinatura do autor -->
     <img class="layer layer-autor"   src="textoautor.png"   alt="" data-lego="right"  data-lego-delay="300">
   </div>
 </section>
@@ -480,41 +438,34 @@ footer{padding:36px 5vw;border-top:1px solid rgba(255,255,255,.05);text-align:ce
 ═══════════════════════════════════ -->
 <section class="transformation" id="transformacao">
   <div class="transformation-content">
-    <!-- 🖼️ IMAGEM 12: Seção de transformação (antes/depois ou resultados) -->
     <img src="transformacao.png" alt="Transformação" style="display:block;">
   </div>
 </section>
 
-<!-- ✅ CORRIGIDO: margin era "-43px -10" (faltava px), agora está "-43px 0" -->
 <div class="section-divider">
   <img src="divisor.png" alt="">
 </div>
-  
+
 <!-- ═══════════════════════════════════
             DEPOIMENTOS
 ═══════════════════════════════════ -->
 <section class="dep-section" id="depoimentos">
-  <!-- 🖼️ IMAGEM 13: Fundo da seção de depoimentos -->
+  <!-- Fundo -->
   <img id="depBg" class="dep-layer" src="depoimentosessao.png" alt="" aria-hidden="true">
 
-  <!-- Canvas de partículas (gerado por JS) -->
+  <!-- Partículas douradas (z-index 1) -->
   <canvas id="depParticles" class="dep-layer"></canvas>
 
-  <!-- 🖼️ IMAGEM 14: Textos da seção de depoimentos (PNG com fundo transparente) -->
+  <!-- Textos (z-index 2) -->
   <img id="depText" class="dep-layer" src="dep-textos.png" alt="" aria-hidden="true">
 
-  <!-- 🖼️ IMAGEM 15: Cards de depoimentos (PNG com fundo transparente) -->
+  <!-- Cards de depoimentos (z-index 3) -->
   <img id="depCards" class="dep-layer" src="dep-cards.png" alt="" aria-hidden="true">
 
-  <!-- Zonas de glow ao hover em cada card -->
-  <div class="dep-layer dep-card-zones">
-    <div class="dep-card-zone dep-tl"></div>
-    <div class="dep-card-zone dep-tr"></div>
-    <div class="dep-card-zone dep-bl"></div>
-    <div class="dep-card-zone dep-br"></div>
-  </div>
+  <!-- ✨ Canvas de cometas orbitando os cards (z-index 4) -->
+  <canvas id="depComets" class="dep-layer"></canvas>
 
-  <!-- Zona clicável sobre o botão de áudio -->
+  <!-- Zona clicável sobre o botão de áudio (z-index 5) -->
   <button id="depAudioZone" aria-label="Ouvir depoimento dos alunos"></button>
 
   <audio id="depAudio" preload="none"
@@ -535,7 +486,6 @@ footer{padding:36px 5vw;border-top:1px solid rgba(255,255,255,.05);text-align:ce
     </div>
 
     <div class="module-img-wrap rv" style="position:relative;cursor:pointer;" onclick="window.open('https://pay.kiwify.com.br/ltnQQJI')">
-      <!-- 🖼️ IMAGEM 16: Grade visual dos módulos do programa -->
       <img src="img/modulos.png" alt="Módulos do Programa" style="width:100%;display:block;border-radius:6px;">
     </div>
 
@@ -596,7 +546,6 @@ footer{padding:36px 5vw;border-top:1px solid rgba(255,255,255,.05);text-align:ce
         style="display:inline-block;max-width:480px;width:90%;cursor:pointer;transition:transform .3s ease,filter .3s ease;"
         onmouseover="this.style.transform='translateY(-3px) scale(1.02)';this.style.filter='drop-shadow(0 16px 40px rgba(201,153,42,.55))'"
         onmouseout="this.style.transform='none';this.style.filter='none'">
-        <!-- 🖼️ IMAGEM 17: Botão "Garantir Acesso" da seção de oferta -->
         <img src="img/btn-comprar.png" alt="Garantir Acesso" style="width:100%;display:block;">
       </a>
       <p class="secure-note">🔒 Pagamento 100% seguro · Garantia de 7 dias sem perguntas</p>
@@ -659,8 +608,6 @@ footer{padding:36px 5vw;border-top:1px solid rgba(255,255,255,.05);text-align:ce
         style="display:inline-block;max-width:480px;width:90%;cursor:pointer;transition:transform .3s ease,filter .3s ease;"
         onmouseover="this.style.transform='translateY(-3px) scale(1.02)';this.style.filter='drop-shadow(0 16px 40px rgba(201,153,42,.55))'"
         onmouseout="this.style.transform='none';this.style.filter='none'">
-        <!-- 🖼️ IMAGEM 18: Botão "Garantir Acesso" do final da página -->
-        <!-- Pode ser o mesmo arquivo img/btn-comprar.png ou um diferente -->
         <img src="img/btn-comprar.png" alt="Garantir Acesso" style="width:100%;display:block;">
       </a>
       <p style="margin-top:16px;font-size:12px;color:#3A363A;">🔒 Acesso imediato · Garantia de 7 dias · Pagamento único</p>
@@ -767,6 +714,133 @@ footer{padding:36px 5vw;border-top:1px solid rgba(255,255,255,.05);text-align:ce
   }
   window.addEventListener('resize', function(){ resize(); init(); });
   resize(); init(); draw();
+})();
+
+/* ===== DEPOIMENTOS: COMETAS ORBITANDO OS CARDS ===== */
+(function(){
+  var section = document.getElementById('depoimentos');
+  var canvas  = document.getElementById('depComets');
+  if(!section || !canvas) return;
+  var ctx = canvas.getContext('2d');
+  var W, H;
+
+  /*
+   * Zonas dos cards em % do tamanho da seção (aspect-ratio 1920/3220).
+   * Cada objeto representa um card: top, left, w (width), h (height).
+   * Os valores espelham exatamente as classes .dep-tl/.dep-tr/.dep-bl/.dep-br.
+   */
+  var ZONES = [
+    { top: 0.214, left: 0.144, w: 0.346, h: 0.207 }, /* topo-esquerda  */
+    { top: 0.213, left: 0.533, w: 0.312, h: 0.207 }, /* topo-direita   */
+    { top: 0.458, left: 0.144, w: 0.346, h: 0.207 }, /* baixo-esquerda */
+    { top: 0.458, left: 0.533, w: 0.312, h: 0.207 }, /* baixo-direita  */
+  ];
+
+  /* Um cometa por card, com offset de fase para não ficarem sincronizados */
+  var comets = ZONES.map(function(z, i){
+    return {
+      zone  : z,
+      t     : i * 0.25,   /* fase inicial escalonada (0..1) */
+      speed : 0.0010 + i * 0.00015  /* velocidades ligeiramente diferentes */
+    };
+  });
+
+  var TAIL_FRAC = 0.28; /* comprimento da cauda como fração do perímetro */
+  var SEGMENTS  = 80;   /* suavidade da cauda */
+
+  function resize(){
+    W = canvas.width  = section.offsetWidth;
+    H = canvas.height = section.offsetHeight;
+  }
+
+  /*
+   * Retorna {x,y} de um ponto na borda do retângulo descrito por 'z',
+   * onde t=0..1 percorre o perímetro no sentido horário a partir do
+   * canto superior-esquerdo.
+   */
+  function ptOnRect(z, t){
+    t = ((t % 1) + 1) % 1;
+    var x = z.left * W,
+        y = z.top  * H,
+        w = z.w    * W,
+        h = z.h    * H;
+    var P = 2 * (w + h);
+    var d = t * P;
+
+    if (d < w)       return { x: x + d,     y: y       }; /* topo  → */
+    d -= w;
+    if (d < h)       return { x: x + w,     y: y + d   }; /* direita ↓ */
+    d -= h;
+    if (d < w)       return { x: x + w - d, y: y + h   }; /* base  ← */
+    d -= w;
+                     return { x: x,         y: y + h - d }; /* esquerda ↑ */
+  }
+
+  function drawComet(comet){
+    /* Atualiza posição */
+    comet.t = (comet.t + comet.speed) % 1;
+
+    /* ── Cauda ── */
+    for (var i = 0; i < SEGMENTS; i++){
+      var a  = i / SEGMENTS;                        /* 0 = cabeça, 1 = fim da cauda */
+      var t0 = comet.t - a       * TAIL_FRAC;
+      var t1 = comet.t - (a + 1 / SEGMENTS) * TAIL_FRAC;
+      var p0 = ptOnRect(comet.zone, t0);
+      var p1 = ptOnRect(comet.zone, t1);
+
+      var alpha = Math.pow(1 - a, 1.6);             /* fade quadrático suave */
+      var lw    = (1 - a) * 2.8 + 0.4;             /* linha mais grossa na cabeça */
+
+      ctx.save();
+      ctx.globalAlpha = alpha * 0.92;
+      ctx.lineWidth   = lw;
+      ctx.lineCap     = 'round';
+      ctx.shadowBlur  = lw * 7;
+      ctx.shadowColor = 'rgba(232,197,106,1)';
+      /* Gradiente amarelo→branco conforme se aproxima da cabeça */
+      var hue = 42 + (1 - a) * 8;
+      var lit = 60 + (1 - a) * 30;
+      ctx.strokeStyle = 'hsl(' + hue + ',100%,' + lit + '%)';
+      ctx.beginPath();
+      ctx.moveTo(p0.x, p0.y);
+      ctx.lineTo(p1.x, p1.y);
+      ctx.stroke();
+      ctx.restore();
+    }
+
+    /* ── Cabeça brilhante ── */
+    var head = ptOnRect(comet.zone, comet.t);
+    /* Halo externo */
+    ctx.save();
+    ctx.globalAlpha = 0.55;
+    ctx.shadowBlur  = 22;
+    ctx.shadowColor = '#F5D060';
+    ctx.fillStyle   = 'rgba(245,208,96,0.6)';
+    ctx.beginPath();
+    ctx.arc(head.x, head.y, 4, 0, Math.PI * 2);
+    ctx.fill();
+    ctx.restore();
+    /* Núcleo branco */
+    ctx.save();
+    ctx.globalAlpha = 1;
+    ctx.shadowBlur  = 14;
+    ctx.shadowColor = '#fff';
+    ctx.fillStyle   = '#fff';
+    ctx.beginPath();
+    ctx.arc(head.x, head.y, 2, 0, Math.PI * 2);
+    ctx.fill();
+    ctx.restore();
+  }
+
+  function loop(){
+    ctx.clearRect(0, 0, W, H);
+    comets.forEach(drawComet);
+    requestAnimationFrame(loop);
+  }
+
+  window.addEventListener('resize', function(){ resize(); });
+  resize();
+  loop();
 })();
 
 /* ===== DEPOIMENTOS: ÁUDIO ===== */
