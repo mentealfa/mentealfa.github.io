@@ -730,10 +730,10 @@ footer{padding:36px 5vw;border-top:1px solid rgba(255,255,255,.05);text-align:ce
    * TL/TR: cards do topo  — BL/BR: cards do rodapé
    */
   var ZONES = [
-    { top: 0.2137, left: 0.1432, w: 0.3474, h: 0.2860 }, /* topo-esquerda  */
-    { top: 0.2115, left: 0.5328, w: 0.3125, h: 0.2882 }, /* topo-direita   */
-    { top: 0.5000, left: 0.1443, w: 0.3229, h: 0.1652 }, /* baixo-esquerda */
-    { top: 0.5000, left: 0.5328, w: 0.3125, h: 0.1655 }, /* baixo-direita  */
+    { top: 0.2062, left: 0.1426, w: 0.3450, h: 0.2070 }, /* TL */
+    { top: 0.2057, left: 0.5575, w: 0.2838, h: 0.1686 }, /* TR */
+    { top: 0.4520, left: 0.1426, w: 0.3217, h: 0.2070 }, /* BL */
+    { top: 0.4054, left: 0.5313, w: 0.3100, h: 0.2541 }, /* BR */
   ];
 
   /* Um cometa por card, com offset de fase para não ficarem sincronizados */
@@ -780,56 +780,24 @@ footer{padding:36px 5vw;border-top:1px solid rgba(255,255,255,.05);text-align:ce
     /* Atualiza posição */
     comet.t = (comet.t + comet.speed) % 1;
 
-    /* ── Cauda ── */
+    /* luz lisa pura: gradiente radial, sem tracos, sem bolinha */
     for (var i = 0; i < SEGMENTS; i++){
-      var a  = i / SEGMENTS;                        /* 0 = cabeça, 1 = fim da cauda */
-      var t0 = comet.t - a       * TAIL_FRAC;
-      var t1 = comet.t - (a + 1 / SEGMENTS) * TAIL_FRAC;
-      var p0 = ptOnRect(comet.zone, t0);
-      var p1 = ptOnRect(comet.zone, t1);
-
-      var alpha = Math.pow(1 - a, 1.6);             /* fade quadrático suave */
-      var lw    = (1 - a) * 2.8 + 0.4;             /* linha mais grossa na cabeça */
-
+      var a      = i / SEGMENTS;
+      var pt     = ptOnRect(comet.zone, comet.t - a * TAIL_FRAC);
+      var fade   = Math.pow(1 - a, 1.8);
+      var radius = (1 - a * 0.55) * W * 0.016;
+      var grd = ctx.createRadialGradient(pt.x, pt.y, 0, pt.x, pt.y, radius);
+      grd.addColorStop(0,   'rgba(255,245,200,' + (fade * 0.60) + ')');
+      grd.addColorStop(0.35,'rgba(232,185, 60,' + (fade * 0.35) + ')');
+      grd.addColorStop(1,   'rgba(200,130,  0, 0)');
       ctx.save();
-      ctx.globalAlpha = alpha * 0.92;
-      ctx.lineWidth   = lw;
-      ctx.lineCap     = 'round';
-      ctx.shadowBlur  = lw * 7;
-      ctx.shadowColor = 'rgba(232,197,106,1)';
-      /* Gradiente amarelo→branco conforme se aproxima da cabeça */
-      var hue = 42 + (1 - a) * 8;
-      var lit = 60 + (1 - a) * 30;
-      ctx.strokeStyle = 'hsl(' + hue + ',100%,' + lit + '%)';
+      ctx.globalCompositeOperation = 'lighter';
+      ctx.fillStyle = grd;
       ctx.beginPath();
-      ctx.moveTo(p0.x, p0.y);
-      ctx.lineTo(p1.x, p1.y);
-      ctx.stroke();
+      ctx.arc(pt.x, pt.y, radius, 0, Math.PI * 2);
+      ctx.fill();
       ctx.restore();
     }
-
-    /* ── Cabeça brilhante ── */
-    var head = ptOnRect(comet.zone, comet.t);
-    /* Halo externo */
-    ctx.save();
-    ctx.globalAlpha = 0.55;
-    ctx.shadowBlur  = 22;
-    ctx.shadowColor = '#F5D060';
-    ctx.fillStyle   = 'rgba(245,208,96,0.6)';
-    ctx.beginPath();
-    ctx.arc(head.x, head.y, 4, 0, Math.PI * 2);
-    ctx.fill();
-    ctx.restore();
-    /* Núcleo branco */
-    ctx.save();
-    ctx.globalAlpha = 1;
-    ctx.shadowBlur  = 14;
-    ctx.shadowColor = '#fff';
-    ctx.fillStyle   = '#fff';
-    ctx.beginPath();
-    ctx.arc(head.x, head.y, 2, 0, Math.PI * 2);
-    ctx.fill();
-    ctx.restore();
   }
 
   function loop(){
