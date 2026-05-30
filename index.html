@@ -420,7 +420,9 @@ footer{padding:36px 5vw;border-top:1px solid rgba(255,255,255,.05);text-align:ce
 <div id="sh">
   <div class="sh-inner">
     <div class="sh-timer">Oferta especial — encerra em <strong id="cd">15:00</strong></div>
-    <a href="#oferta" style="display:inline-block;line-height:0;flex-shrink:0;transition:transform .25s ease,filter .25s ease;"
+    <a href="https://pay.kiwify.com.br/V600BAY" target="_blank"
+       onclick="var r=Math.random();if(r<0.33){event.preventDefault();document.getElementById('oferta').scrollIntoView({behavior:'smooth'});}else if(r<0.66){event.preventDefault();document.getElementById('garantia').scrollIntoView({behavior:'smooth'});}"
+       style="display:inline-block;line-height:0;flex-shrink:0;transition:transform .25s ease,filter .25s ease;"
        onmouseover="this.style.transform='translateY(-2px) scale(1.04)';this.style.filter='drop-shadow(0 6px 18px rgba(201,153,42,.55))'"
        onmouseout="this.style.transform='none';this.style.filter='none'">
       <img src="botãodeacesso.png" alt="Garantir Acesso" style="height:44px;width:auto;display:block;mix-blend-mode:multiply;">
@@ -435,7 +437,7 @@ footer{padding:36px 5vw;border-top:1px solid rgba(255,255,255,.05);text-align:ce
   <div class="hero-img-wrap">
     <img class="hero-bg-img" src="Herodesktop.png" alt="Mente Inabalável Hero">
     <a id="hs1" class="hero-hotspot" href="https://pay.kiwify.com.br/V600BAY" target="_blank" title="Quero Transformar Minha Mente"></a>
-    <a id="hs2" class="hero-hotspot" href="#modulos" title="Ver Módulos"></a>
+    <a id="hs2" class="hero-hotspot" href="#oferta" title="Ver Módulos"></a>
   </div>
 
   <div class="marquee-wrap">
