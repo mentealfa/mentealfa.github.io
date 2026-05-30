@@ -780,20 +780,88 @@ footer{padding:36px 5vw;border-top:1px solid rgba(255,255,255,.05);text-align:ce
   audio.addEventListener('ended', function(){ zone.classList.remove('dep-playing'); });
 })();
 
-/* ===== PROGRESS BAR + STICKY HEADER + REVEAL ===== */
+/* ===== PROGRESS BAR + STICKY HEADER ===== */
 const pb = document.getElementById('pb');
 const sh = document.getElementById('sh');
 window.addEventListener('scroll', () => {
   const el = document.documentElement;
   pb.style.width = (el.scrollTop / (el.scrollHeight - el.clientHeight) * 100) + '%';
   sh.classList.toggle('show', window.scrollY > 420);
-  document.querySelectorAll('.rv').forEach(el => {
-    if (el.getBoundingClientRect().top < window.innerHeight - 60) el.classList.add('v');
-  });
 }, {passive: true});
-document.querySelectorAll('.rv').forEach(el => {
-  if (el.getBoundingClientRect().top < window.innerHeight - 60) el.classList.add('v');
-});
+
+/* ===== SCROLL REVEAL PROFISSIONAL ===== */
+(function () {
+  /* 1. Estilo base para os elementos .rv e .rv-section */
+  var style = document.createElement('style');
+  style.textContent = [
+    '.rv{opacity:0;transform:translateY(36px);transition:opacity .75s cubic-bezier(.22,1,.36,1),transform .75s cubic-bezier(.22,1,.36,1);}',
+    '.rv.v{opacity:1;transform:none;}',
+    '.rv.d1{transition-delay:.1s}.rv.d2{transition-delay:.2s}.rv.d3{transition-delay:.3s}.rv.d4{transition-delay:.4s}',
+
+    /* Seções inteiras: fade in + sobe 48px */
+    '.rv-section{opacity:0;transform:translateY(48px);transition:opacity .9s cubic-bezier(.22,1,.36,1),transform .9s cubic-bezier(.22,1,.36,1);}',
+    '.rv-section.v{opacity:1;transform:none;}',
+
+    /* Variantes de direção para seções */
+    '.rv-left{opacity:0;transform:translateX(-52px);transition:opacity .85s cubic-bezier(.22,1,.36,1),transform .85s cubic-bezier(.22,1,.36,1);}',
+    '.rv-left.v{opacity:1;transform:none;}',
+    '.rv-right{opacity:0;transform:translateX(52px);transition:opacity .85s cubic-bezier(.22,1,.36,1),transform .85s cubic-bezier(.22,1,.36,1);}',
+    '.rv-right.v{opacity:1;transform:none;}',
+    '.rv-zoom{opacity:0;transform:scale(.94);transition:opacity .85s cubic-bezier(.22,1,.36,1),transform .85s cubic-bezier(.22,1,.36,1);}',
+    '.rv-zoom.v{opacity:1;transform:none;}'
+  ].join('');
+  document.head.appendChild(style);
+
+  /* 2. Marca as seções principais com rv-section */
+  var sectionSelectors = [
+    '#diagnostico',
+    '.transformation',
+    '.section-divider',
+    '#depoimentos',
+    '#oferta',
+    '#garantia',
+    '.faq',
+    '.final-cta',
+    'footer'
+  ];
+  sectionSelectors.forEach(function (sel) {
+    var els = document.querySelectorAll(sel);
+    els.forEach(function (el) {
+      if (!el.classList.contains('rv-section')) {
+        el.classList.add('rv-section');
+      }
+    });
+  });
+
+  /* 3. Marca a seção de depoimentos com rv-zoom (escala) */
+  var depSection = document.getElementById('depoimentos');
+  if (depSection) {
+    depSection.classList.remove('rv-section');
+    depSection.classList.add('rv-zoom');
+  }
+
+  /* 4. IntersectionObserver — threshold baixo para disparar cedo */
+  var ioOptions = { threshold: 0.06, rootMargin: '0px 0px -40px 0px' };
+  var io = new IntersectionObserver(function (entries) {
+    entries.forEach(function (entry) {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('v');
+        io.unobserve(entry.target); /* animação roda só uma vez */
+      }
+    });
+  }, ioOptions);
+
+  /* 5. Observa todos os elementos elegíveis */
+  var allReveal = document.querySelectorAll('.rv, .rv-section, .rv-left, .rv-right, .rv-zoom');
+  allReveal.forEach(function (el) {
+    /* Elementos já no viewport ao carregar → anima imediatamente */
+    if (el.getBoundingClientRect().top < window.innerHeight - 40) {
+      el.classList.add('v');
+    } else {
+      io.observe(el);
+    }
+  });
+})();
 
 /* ===== COUNTDOWN ===== */
 const DUR = 15 * 60 * 1000;
