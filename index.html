@@ -781,12 +781,14 @@ footer{padding:36px 5vw;border-top:1px solid rgba(255,255,255,.05);text-align:ce
     comet.t = (comet.t + comet.speed) % 1;
 
     /* luz lisa pura: gradiente radial, sem tracos, sem bolinha */
+    var Y_OFF = 26 * (H / section.offsetHeight); /* 26px de tela em px de canvas */
     for (var i = 0; i < SEGMENTS; i++){
       var a      = i / SEGMENTS;
       var pt     = ptOnRect(comet.zone, comet.t - a * TAIL_FRAC);
       var fade   = Math.pow(1 - a, 1.8);
-      var radius = (1 - a * 0.55) * W * 0.016;
-      var grd = ctx.createRadialGradient(pt.x, pt.y, 0, pt.x, pt.y, radius);
+      var radius = (1 - a * 0.55) * W * 0.006;
+      var cx = pt.x, cy = pt.y + Y_OFF;
+      var grd = ctx.createRadialGradient(cx, cy, 0, cx, cy, radius);
       grd.addColorStop(0,   'rgba(255,245,200,' + (fade * 0.60) + ')');
       grd.addColorStop(0.35,'rgba(232,185, 60,' + (fade * 0.35) + ')');
       grd.addColorStop(1,   'rgba(200,130,  0, 0)');
@@ -794,7 +796,7 @@ footer{padding:36px 5vw;border-top:1px solid rgba(255,255,255,.05);text-align:ce
       ctx.globalCompositeOperation = 'lighter';
       ctx.fillStyle = grd;
       ctx.beginPath();
-      ctx.arc(pt.x, pt.y, radius, 0, Math.PI * 2);
+      ctx.arc(cx, cy, radius, 0, Math.PI * 2);
       ctx.fill();
       ctx.restore();
     }
