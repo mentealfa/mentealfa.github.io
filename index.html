@@ -476,7 +476,7 @@ footer{padding:36px 5vw;border-top:1px solid rgba(255,255,255,.05);text-align:ce
 <!-- ═══════════════════════════════════
          MÓDULOS + OFERTA (UNIFICADO)
 ═══════════════════════════════════ -->
-<section style="margin:0;padding:0;width:100%;display:block;overflow:hidden;background:#0a0a0a;margin-top:-80px;position:relative;z-index:10;" id="oferta">
+<section style="margin:0;padding:0;width:100%;display:block;overflow:hidden;background:#0a0a0a;position:relative;z-index:10;" id="oferta">
   <div style="position:relative;width:100%;line-height:0;">
     <img src="modulos-oferta.png" alt="Módulos e Oferta" style="width:100%;display:block;">
     <a href="https://pay.kiwify.com.br/ltnQQJI" target="_blank"
@@ -492,59 +492,92 @@ footer{padding:36px 5vw;border-top:1px solid rgba(255,255,255,.05);text-align:ce
 <!-- ═══════════════════════════════════
          GARANTIA + FAQ
 ═══════════════════════════════════ -->
-<section style="margin:0;padding:0;width:100%;display:block;overflow:hidden;background:#0A0A0A;position:relative;" id="garantia">
+<section style="margin:0;padding:0;width:100%;display:block;background:#0A0A0A;position:relative;" id="garantia">
 
-  <!-- IMAGEM GARANTIA -->
-  <div style="width:100%;line-height:0;">
-    <img src="garantia.png" alt="Garantia 7 Dias" style="width:100%;display:block;">
+  <!-- Imagem garantia — mostra só a parte marrom (topo ~52%), 
+       a área branca fica oculta com overflow:hidden + altura proporcional -->
+  <div style="width:100%;overflow:hidden;line-height:0;">
+    <img src="garantia.png" alt="Garantia 7 Dias" style="
+      width:100%;
+      display:block;
+      /* A imagem original tem ~52% de conteúdo marrom e ~48% branco.
+         Exibimos só até onde termina o marrom usando max-height relativo. */
+      max-height:54%;
+      object-fit:cover;
+      object-position:top center;
+    ">
   </div>
 
-  <!-- FAQ — fundo dark igual ao site -->
-  <div style="width:100%;background:#0A0A0A;padding:80px 5vw 90px;margin-top:-2px;">
+  <!-- FAQ — fundo branco/creme igual à área da imagem -->
+  <div style="
+    width:100%;
+    background:#F5F0E8;
+    padding:72px 5vw 90px;
+    margin-top:0;
+  ">
     <div class="container-sm">
 
       <div class="text-center" style="margin-bottom:48px;">
-        <span class="eyebrow rv">Dúvidas Frequentes</span>
-        <div class="divider-gold rv"></div>
-        <h2 class="stitle rv">Tudo que você precisa saber<br>antes de decidir</h2>
+        <span class="eyebrow rv" style="color:#8B5E0A;border-color:rgba(139,94,10,.35);background:rgba(139,94,10,.08);">Dúvidas Frequentes</span>
+        <div class="divider-gold rv" style="background:linear-gradient(90deg,#8B5E0A,#C9992A);"></div>
+        <h2 class="stitle rv" style="color:#1A1208;">Tudo que você precisa saber<br>antes de decidir</h2>
       </div>
 
-      <div class="faq-list">
+      <div style="display:flex;flex-direction:column;gap:2px;">
 
-        <details class="faq-item rv">
-          <summary class="faq-q">Como recebo meu acesso ao programa?<span class="faq-chevron">▾</span></summary>
-          <div class="faq-a">Imediatamente após a confirmação do pagamento, você recebe um e-mail com seus dados de acesso à área de membros. É automático — você não precisa esperar nada.</div>
+        <details style="border:1px solid rgba(139,94,10,.18);border-radius:4px;overflow:hidden;background:#fff;transition:.3s;" class="rv">
+          <summary style="padding:22px 26px;cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:18px;font-weight:500;font-size:15px;color:#2A1F0A;list-style:none;">
+            Como recebo meu acesso ao programa?
+            <span style="width:26px;height:26px;min-width:26px;border-radius:50%;background:rgba(139,94,10,.1);border:1px solid rgba(139,94,10,.25);display:flex;align-items:center;justify-content:center;font-size:11px;color:#8B5E0A;transition:.3s;">▾</span>
+          </summary>
+          <div style="padding:0 26px 20px;color:#6B5B3E;font-size:14px;line-height:1.8;border-top:1px solid rgba(139,94,10,.08);">Imediatamente após a confirmação do pagamento, você recebe um e-mail com seus dados de acesso à área de membros. É automático — você não precisa esperar nada.</div>
         </details>
 
-        <details class="faq-item rv d1">
-          <summary class="faq-q">Por quanto tempo tenho acesso ao conteúdo?<span class="faq-chevron">▾</span></summary>
-          <div class="faq-a">O acesso é vitalício. Todas as futuras atualizações e novos conteúdos que forem adicionados ao programa estão inclusos sem custo adicional.</div>
+        <details style="border:1px solid rgba(139,94,10,.18);border-radius:4px;overflow:hidden;background:#fff;transition:.3s;" class="rv d1">
+          <summary style="padding:22px 26px;cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:18px;font-weight:500;font-size:15px;color:#2A1F0A;list-style:none;">
+            Por quanto tempo tenho acesso ao conteúdo?
+            <span style="width:26px;height:26px;min-width:26px;border-radius:50%;background:rgba(139,94,10,.1);border:1px solid rgba(139,94,10,.25);display:flex;align-items:center;justify-content:center;font-size:11px;color:#8B5E0A;transition:.3s;">▾</span>
+          </summary>
+          <div style="padding:0 26px 20px;color:#6B5B3E;font-size:14px;line-height:1.8;border-top:1px solid rgba(139,94,10,.08);">O acesso é vitalício. Todas as futuras atualizações e novos conteúdos que forem adicionados ao programa estão inclusos sem custo adicional.</div>
         </details>
 
-        <details class="faq-item rv d2">
-          <summary class="faq-q">Este programa serve para iniciantes?<span class="faq-chevron">▾</span></summary>
-          <div class="faq-a">Sim. O conteúdo foi estruturado para qualquer nível. O método parte da sua realidade atual e constrói a partir daí.</div>
+        <details style="border:1px solid rgba(139,94,10,.18);border-radius:4px;overflow:hidden;background:#fff;transition:.3s;" class="rv d2">
+          <summary style="padding:22px 26px;cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:18px;font-weight:500;font-size:15px;color:#2A1F0A;list-style:none;">
+            Este programa serve para iniciantes?
+            <span style="width:26px;height:26px;min-width:26px;border-radius:50%;background:rgba(139,94,10,.1);border:1px solid rgba(139,94,10,.25);display:flex;align-items:center;justify-content:center;font-size:11px;color:#8B5E0A;transition:.3s;">▾</span>
+          </summary>
+          <div style="padding:0 26px 20px;color:#6B5B3E;font-size:14px;line-height:1.8;border-top:1px solid rgba(139,94,10,.08);">Sim. O conteúdo foi estruturado para qualquer nível. O método parte da sua realidade atual e constrói a partir daí.</div>
         </details>
 
-        <details class="faq-item rv">
-          <summary class="faq-q">Quanto tempo preciso dedicar por dia?<span class="faq-chevron">▾</span></summary>
-          <div class="faq-a">Com 20 a 30 minutos diários você já consegue progredir de forma consistente. A ideia é encaixar na rotina, não substituir ela.</div>
+        <details style="border:1px solid rgba(139,94,10,.18);border-radius:4px;overflow:hidden;background:#fff;transition:.3s;" class="rv">
+          <summary style="padding:22px 26px;cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:18px;font-weight:500;font-size:15px;color:#2A1F0A;list-style:none;">
+            Quanto tempo preciso dedicar por dia?
+            <span style="width:26px;height:26px;min-width:26px;border-radius:50%;background:rgba(139,94,10,.1);border:1px solid rgba(139,94,10,.25);display:flex;align-items:center;justify-content:center;font-size:11px;color:#8B5E0A;transition:.3s;">▾</span>
+          </summary>
+          <div style="padding:0 26px 20px;color:#6B5B3E;font-size:14px;line-height:1.8;border-top:1px solid rgba(139,94,10,.08);">Com 20 a 30 minutos diários você já consegue progredir de forma consistente. A ideia é encaixar na rotina, não substituir ela.</div>
         </details>
 
-        <details class="faq-item rv d1">
-          <summary class="faq-q">A garantia funciona de verdade?<span class="faq-chevron">▾</span></summary>
-          <div class="faq-a">Sim, sem letras miúdas. Se dentro de 7 dias você não estiver satisfeito por qualquer motivo, basta enviar um e-mail e fazemos o reembolso integral. O risco é 100% nosso.</div>
+        <details style="border:1px solid rgba(139,94,10,.18);border-radius:4px;overflow:hidden;background:#fff;transition:.3s;" class="rv d1">
+          <summary style="padding:22px 26px;cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:18px;font-weight:500;font-size:15px;color:#2A1F0A;list-style:none;">
+            A garantia funciona de verdade?
+            <span style="width:26px;height:26px;min-width:26px;border-radius:50%;background:rgba(139,94,10,.1);border:1px solid rgba(139,94,10,.25);display:flex;align-items:center;justify-content:center;font-size:11px;color:#8B5E0A;transition:.3s;">▾</span>
+          </summary>
+          <div style="padding:0 26px 20px;color:#6B5B3E;font-size:14px;line-height:1.8;border-top:1px solid rgba(139,94,10,.08);">Sim, sem letras miúdas. Se dentro de 7 dias você não estiver satisfeito por qualquer motivo, basta enviar um e-mail e fazemos o reembolso integral. O risco é 100% nosso.</div>
         </details>
 
-        <details class="faq-item rv d2">
-          <summary class="faq-q">O programa é em PDF ou tem vídeos?<span class="faq-chevron">▾</span></summary>
-          <div class="faq-a">O programa atual é em formato ebook (PDF), com conteúdo estruturado e aplicável. Vídeos e áudios estão previstos para futuras atualizações gratuitas para alunos.</div>
+        <details style="border:1px solid rgba(139,94,10,.18);border-radius:4px;overflow:hidden;background:#fff;transition:.3s;" class="rv d2">
+          <summary style="padding:22px 26px;cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:18px;font-weight:500;font-size:15px;color:#2A1F0A;list-style:none;">
+            O programa é em PDF ou tem vídeos?
+            <span style="width:26px;height:26px;min-width:26px;border-radius:50%;background:rgba(139,94,10,.1);border:1px solid rgba(139,94,10,.25);display:flex;align-items:center;justify-content:center;font-size:11px;color:#8B5E0A;transition:.3s;">▾</span>
+          </summary>
+          <div style="padding:0 26px 20px;color:#6B5B3E;font-size:14px;line-height:1.8;border-top:1px solid rgba(139,94,10,.08);">O programa atual é em formato ebook (PDF), com conteúdo estruturado e aplicável. Vídeos e áudios estão previstos para futuras atualizações gratuitas para alunos.</div>
         </details>
 
       </div>
     </div>
   </div>
 
+</section>
 </section>
 
 <!-- ═══════════════════════════════════
