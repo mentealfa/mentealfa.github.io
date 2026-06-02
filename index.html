@@ -237,16 +237,20 @@ img.dep-layer {
 #depAudioZone {
   position: absolute;
   z-index: 5;
-  top: 85.5%; left: 28.3%;
-  width: 44.9%; height: 3.8%;
+  top: 55.4%; left: 28.4%;
+  width: 44.9%; height: 3.7%;
   background: transparent;
   border: none;
   cursor: pointer;
-  border-radius: 6px;
+  border-radius: 50px;
   outline: none;
+  transition: box-shadow .3s ease;
 }
-#depAudioZone.dep-playing {
-  box-shadow: 0 0 18px 4px rgba(212,160,23,.45);
+#depAudioZone:hover {
+  box-shadow:
+    0 0 8px 6px  rgba(245,166,35,.70),
+    0 0 24px 12px rgba(232,197,106,.45),
+    0 0 55px 20px rgba(201,153,42,.25);
 }
 
 /* ===== FAQ PREMIUM ===== */
@@ -523,7 +527,7 @@ footer{padding:36px 5vw;border-top:1px solid rgba(255,255,255,.05);text-align:ce
     <img src="modulos-oferta.png" alt="Módulos e Oferta" style="width:100%;display:block;">
     <a href="https://pay.kiwify.com.br/ltnQQJI" target="_blank"
       id="hsCompra"
-      style="position:absolute;display:block;z-index:10;border-radius:50px;background:transparent;cursor:pointer;bottom:4.5%;left:50%;transform:translateX(-50%);width:38%;height:5%;"
+      style="position:absolute;display:block;z-index:10;border-radius:50px;background:transparent;cursor:pointer;bottom:13%;left:50%;transform:translateX(-50%);width:25.4%;height:4.2%;transition:box-shadow .3s ease;"
       title="Garantir Acesso"
       onmouseover="this.style.boxShadow='0 0 8px 6px rgba(245,166,35,.70), 0 0 24px 12px rgba(232,197,106,.45), 0 0 55px 20px rgba(201,153,42,.25)'"
       onmouseout="this.style.boxShadow='none'"
