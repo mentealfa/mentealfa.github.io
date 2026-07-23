@@ -732,6 +732,33 @@ details[open] .faq-icon::after { opacity: 0; }
   .footer-bottom{flex-direction:column;align-items:flex-start;gap:10px;}
   .footer-legal-links{gap:12px;}
 }
+
+/* ===== OTIMIZAÇÃO RESPONSIVE — IMAGENS MOBILE ===== */
+/* Torna <picture> bloco para não quebrar layout */
+picture{display:block;line-height:0;}
+.hero-img-wrap picture img{width:100%;display:block;}
+
+/*
+  INSTRUÇÕES — Imagens mobile que você precisa criar:
+  ─────────────────────────────────────────────────────
+  Herodesktop.png         → Heromobile.png          (já nomeado assim!)
+  transformacao.png       → transformacao-mobile.png
+  modulos-oferta.png      → modulos-oferta-mobile.png
+  garantia.png            → garantia-mobile.png
+  depoimentosessao.png    → depoimentosessao-mobile.png  (opcional)
+  dep-textos.png          → dep-textos-mobile.png        (opcional)
+  dep-cards.png           → dep-cards-mobile.png         (opcional)
+
+  Depois de criar as imagens mobile, descomente o bloco abaixo:
+*/
+
+/*
+@media(max-width:768px){
+  .dep-section{ aspect-ratio: 9/16; }
+  #depAudioZone{ top:84%; left:5%; width:90%; height:4%; }
+  #hsCompra{ top:94%; left:10%; width:80%; height:4%; }
+}
+*/
 </style>
 </head>
 <body>
@@ -746,7 +773,7 @@ details[open] .faq-icon::after { opacity: 0; }
        style="display:inline-block;line-height:0;flex-shrink:0;transition:transform .25s ease,filter .25s ease;"
        onmouseover="this.style.transform='translateY(-2px) scale(1.04)';this.style.filter='drop-shadow(0 6px 18px rgba(201,153,42,.55))'"
        onmouseout="this.style.transform='none';this.style.filter='none'">
-      <img src="botãodeacesso.png" alt="Garantir Acesso" style="height:44px;width:220px;object-fit:contain;display:block;">
+      <img src="botãodeacesso.png" alt="Garantir Acesso" style="height:44px;width:220px;object-fit:contain;display:block;" decoding="async">
     </a>
   </div>
 </div>
@@ -754,16 +781,19 @@ details[open] .faq-icon::after { opacity: 0; }
 <!-- HERO -->
 <section style="margin:0;padding:0;width:100%;display:block;overflow:hidden;background:#0a0a0a;">
   <div class="hero-img-wrap">
-    <img class="hero-bg-img" src="Herodesktop.png" alt="Mente Inabalável Hero">
+    <picture>
+      <source media="(max-width:768px)" srcset="Heromobile.png">
+      <img class="hero-bg-img" src="Herodesktop.png" alt="Mente Inabalável Hero" loading="eager" fetchpriority="high" decoding="sync">
+    </picture>
     <a id="hs1" class="hero-hotspot" href="https://pay.kiwify.com.br/V600BAY" target="_blank" title="Quero Transformar Minha Mente"></a>
     <a id="hs2" class="hero-hotspot" href="#oferta" title="Ver Módulos"></a>
   </div>
   <div class="marquee-wrap">
     <div class="marquee-track">
-      <img src="Carrossel Vitalício Acesso + Atualizações.png" alt="">
-      <img src="Carrossel Vitalício Acesso + Atualizações.png" alt="">
-      <img src="Carrossel Vitalício Acesso + Atualizações.png" alt="">
-      <img src="Carrossel Vitalício Acesso + Atualizações.png" alt="">
+      <img src="Carrossel Vitalício Acesso + Atualizações.png" alt="" loading="lazy" decoding="async">
+      <img src="Carrossel Vitalício Acesso + Atualizações.png" alt="" loading="lazy" decoding="async">
+      <img src="Carrossel Vitalício Acesso + Atualizações.png" alt="" loading="lazy" decoding="async">
+      <img src="Carrossel Vitalício Acesso + Atualizações.png" alt="" loading="lazy" decoding="async">
     </div>
   </div>
 </section>
@@ -771,33 +801,36 @@ details[open] .faq-icon::after { opacity: 0; }
 <!-- DIAGNÓSTICO -->
 <section class="diag-section" id="diagnostico">
   <div class="diag-canvas">
-    <img class="layer layer-base"    src="diagnfundo.png" alt="">
-    <img class="layer layer-laranja" src="baselaranja.png" alt="" data-lego="bottom">
-    <img class="layer layer-marrom"  src="basemarrom.png" alt="" data-lego="bottom" data-lego-delay="100">
-    <img class="layer layer-borda"   src="bordadourada.png" alt="" data-lego="bottom" data-lego-delay="150">
-    <img class="layer layer-logo"    src="logofundo.png" alt="" data-lego="zoom" data-lego-delay="200">
-    <img class="layer layer-texto"   src="textobranco.png" alt="" data-lego="left" data-lego-delay="250">
-    <img class="layer layer-autor"   src="textoautor.png" alt="" data-lego="right" data-lego-delay="300">
+    <img class="layer layer-base"    src="diagnfundo.png" alt="" loading="lazy" decoding="async">
+    <img class="layer layer-laranja" src="baselaranja.png" alt="" data-lego="bottom" loading="lazy" decoding="async">
+    <img class="layer layer-marrom"  src="basemarrom.png" alt="" data-lego="bottom" data-lego-delay="100" loading="lazy" decoding="async">
+    <img class="layer layer-borda"   src="bordadourada.png" alt="" data-lego="bottom" data-lego-delay="150" loading="lazy" decoding="async">
+    <img class="layer layer-logo"    src="logofundo.png" alt="" data-lego="zoom" data-lego-delay="200" loading="lazy" decoding="async">
+    <img class="layer layer-texto"   src="textobranco.png" alt="" data-lego="left" data-lego-delay="250" loading="lazy" decoding="async">
+    <img class="layer layer-autor"   src="textoautor.png" alt="" data-lego="right" data-lego-delay="300" loading="lazy" decoding="async">
   </div>
 </section>
 
 <!-- TRANSFORMATION -->
 <section class="transformation" id="transformacao">
   <div class="transformation-content">
-    <img src="transformacao.png" alt="Transformação" style="display:block;">
+    <picture>
+      <source media="(max-width:768px)" srcset="transformacao-mobile.png">
+      <img src="transformacao.png" alt="Transformação" style="display:block;" loading="lazy" decoding="async">
+    </picture>
   </div>
 </section>
 
 <div class="section-divider">
-  <img src="divisor.png" alt="">
+  <img src="divisor.png" alt="" loading="lazy" decoding="async">
 </div>
 
 <!-- DEPOIMENTOS -->
 <section class="dep-section" id="depoimentos">
-  <img id="depBg"    class="dep-layer" src="depoimentosessao.png" alt="" aria-hidden="true">
+  <img id="depBg"    class="dep-layer" src="depoimentosessao.png" alt="" aria-hidden="true" loading="lazy" decoding="async">
   <canvas id="depParticles" class="dep-layer"></canvas>
-  <img id="depText"  class="dep-layer" src="dep-textos.png" alt="" aria-hidden="true">
-  <img id="depCards" class="dep-layer" src="dep-cards.png" alt="" aria-hidden="true">
+  <img id="depText"  class="dep-layer" src="dep-textos.png" alt="" aria-hidden="true" loading="lazy" decoding="async">
+  <img id="depCards" class="dep-layer" src="dep-cards.png" alt="" aria-hidden="true" loading="lazy" decoding="async">
   <canvas id="depComets" class="dep-layer"></canvas>
   <button id="depAudioZone" aria-label="Ouvir depoimento dos alunos"></button>
   <audio id="depAudio" preload="none"
@@ -808,7 +841,10 @@ details[open] .faq-icon::after { opacity: 0; }
 <!-- MÓDULOS + OFERTA -->
 <section style="margin:0;padding:0;width:100%;display:block;overflow:hidden;background:#0a0a0a;margin-top:-9px;position:relative;z-index:10;" id="oferta">
   <div style="position:relative;width:100%;line-height:0;">
-    <img src="modulos-oferta.png" alt="Módulos e Oferta" style="width:100%;display:block;">
+    <picture>
+      <source media="(max-width:768px)" srcset="modulos-oferta-mobile.png">
+      <img src="modulos-oferta.png" alt="Módulos e Oferta" style="width:100%;display:block;" loading="lazy" decoding="async">
+    </picture>
     <a href="https://pay.kiwify.com.br/ltnQQJI" target="_blank"
       id="hsCompra"
       class="gold-hotspot"
@@ -819,7 +855,10 @@ details[open] .faq-icon::after { opacity: 0; }
 <!-- GARANTIA -->
 <section style="margin:0;padding:0;width:100%;display:block;background:#0A0A0A;position:relative;" id="garantia">
   <div style="position:relative;width:100%;line-height:0;">
-    <img src="garantia.png" alt="Garantia 7 Dias" style="width:100%;display:block;">
+    <picture>
+      <source media="(max-width:768px)" srcset="garantia-mobile.png">
+      <img src="garantia.png" alt="Garantia 7 Dias" style="width:100%;display:block;" loading="lazy" decoding="async">
+    </picture>
   </div>
 </section>
 
